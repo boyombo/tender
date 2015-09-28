@@ -1,0 +1,23 @@
+{% extends "procurement_base.html" %}
+{% block htmlhead %}
+
+{% endblock %}
+{% block header %}List of active Tenders{% endblock %}
+{% block body %}
+{% if tender_list.count %}
+<ul>
+{% for item in tender_list %}
+<li><a href="{% url 'uploads' id=item.id %}"><strong>{{ item.title|title }}</strong></a> (Posted on {{ item.start_date }}, due on {{ item.end_date }})</li>
+{% endfor %}
+</ul>
+</table>
+{% else %}
+No open tenders
+{% endif %}
+{% endblock %}
+
+{% block sub_menu %}
+{% comment %}
+<li><a href="{% url 'land_new' %}">Add</a></li>
+{% endcomment %}
+{% endblock %}

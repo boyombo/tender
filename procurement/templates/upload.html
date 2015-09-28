@@ -1,0 +1,27 @@
+{% extends "procurement_base.html" %}
+{% block extrahead %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $('#id_serial').focus();
+ });
+</script>
+{{ form.media }}
+{% endblock %}
+{% block header %}Upload Documents for "{{ tender }}"{% endblock %}
+{% block body %}
+
+<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %} 
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.id }}
+        <ul>
+            <li>Title: {{ form.document }}{{ form.document.errors }}</li>
+            <li>Doc: {{ form.upload }}{{ form.upload.errors }}</li>
+        </ul>
+    {% endfor %}
+  <div class='submit'><input type="submit" value="Upload" /></div>
+ </form>
+{% endblock %}
+{% block sub_menu %}
+Company: {{ company }}
+{% endblock %}
