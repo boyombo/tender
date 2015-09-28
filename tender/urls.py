@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import RedirectView
 import settings
 
 from django.contrib import admin
@@ -19,6 +20,7 @@ urlpatterns += patterns(
         r'^download/(?P<id>\d+)/$',
         'procurement.views.download',
         name='download'),
+    url(r'^$', RedirectView.as_view(url='/tenders/'))
 )
 
 if settings.DEBUG:
